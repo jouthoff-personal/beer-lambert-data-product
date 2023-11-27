@@ -1,11 +1,11 @@
-import tempfile
+import os
 
 import gdown
 import pandas as pd
 import requests
 from pandas import read_csv
 
-TEMP_DIR = tempfile.TemporaryDirectory()
+TEMP_DIR = os.curdir + '/sop_data_download/'
 
 
 def read_calibration_data(filepath: str) -> pd.DataFrame:
@@ -13,7 +13,7 @@ def read_calibration_data(filepath: str) -> pd.DataFrame:
 
 
 def read_fermentation_run_data(url):
-    tempfile_name = TEMP_DIR.name + url[-10:] + '.csv'
+    tempfile_name = TEMP_DIR + url[-10:] + '.csv'
     return read_csv(tempfile_name)
 
 
@@ -58,12 +58,15 @@ def map_notion_result_to_fermentation_run(result):
 
 
 def download_file_from_url(url: str):
-    tempfile_name = TEMP_DIR.name + url[-15:] + '.csv'
+    isExist = os.path.exists(TEMP_DIR)
+    if not isExist:
+        os.mkdir(TEMP_DIR)
+    tempfile_name = TEMP_DIR + url[-10:] + '.csv'
     gdown.download(url, tempfile_name)
 
 
 def clean_up_tempfiles():
-    TEMP_DIR.cleanup()
+    os.rmdir(TEMP_DIR)
 
 
 def read_model_from_json():
