@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.training.transform import get_blanks, get_samples, get_absorbance_means, transform_calibration_data, \
+from src.transform import get_blanks, get_samples, get_absorbance_means, transform_calibration_data, \
     get_concentrations
 
 
@@ -45,7 +45,7 @@ def test_get_absorbance_means():
 
 
 def test_transform_calibration_data():
-    df = pd.read_csv('../../src/training/data/calibration.csv')
+    df = pd.read_csv('../src/data/calibration.csv')
 
     [output1, output2] = transform_calibration_data(df)
 

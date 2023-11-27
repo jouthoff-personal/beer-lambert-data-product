@@ -13,6 +13,14 @@ def transform_calibration_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
     return training_data, blanks_means
 
 
+def transform_fermentation_runs_data(df: pd.DataFrame):
+    blanks = get_blanks(df)
+    samples = get_samples(df)
+    prediction_data = drop_columns(samples)
+
+    return prediction_data, blanks
+
+
 def drop_columns(df: pd.DataFrame) -> pd.DataFrame:
     return df.drop(columns=["Well", "Sample"])
 
@@ -32,4 +40,3 @@ def get_concentrations(df: pd.DataFrame) -> pd.DataFrame:
 
 def get_absorbance_means(df: pd.DataFrame) -> pd.DataFrame:
     return df.groupby('Concentration', as_index=False).mean()
-

@@ -1,10 +1,10 @@
-from src.training.read import read_calibration_data, download_run_data, read_sop_data, download_file_from_url, TEMP_DIR, \
+from src.read import read_calibration_data, download_run_data, read_sop_data, download_file_from_url, \
     read_fermentation_run_data
 
 
 def test_read_calibration_data() -> None:
     # Given a csv filepath
-    calibration_data_filepath = '../../src/training/data/calibration.csv'
+    calibration_data_filepath = '../src/data/calibration.csv'
     # When read_calibration_data is called
     output = read_calibration_data(calibration_data_filepath)
     # Then the df has the correct number of rows

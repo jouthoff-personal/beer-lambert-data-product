@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.training.model import calibration_model, train_model
+from src.model import calibration_model, train_model
 
 
 def test_train_model():
@@ -23,4 +23,6 @@ def test_calibration_model():
     assert round(output[1][0], 2) == pytest.approx(6.04)
 
 
+def test_predict_concentrations():
+    pass
 
