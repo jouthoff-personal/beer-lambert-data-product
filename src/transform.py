@@ -16,7 +16,7 @@ def transform_calibration_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
 def transform_fermentation_runs_data(df: pd.DataFrame):
     blanks = get_blanks(df)
     samples = get_samples(df)
-    prediction_data = drop_columns(samples)
+    prediction_data = samples.drop(columns=["Sample", "Dilution"])
 
     return prediction_data, blanks
 

@@ -20,9 +20,7 @@ def read_fermentation_run_data(url):
 def download_run_data():
     runs = read_sop_data()
     for run in runs:
-        url = run['url']
-        tempfile_name = TEMP_DIR.name + url[-10:] + '.csv'
-        download_file_from_url(run['url'], tempfile_name)
+        download_file_from_url(run['url'])
     return runs
 
 
@@ -60,7 +58,7 @@ def map_notion_result_to_fermentation_run(result):
 
 
 def download_file_from_url(url: str):
-    tempfile_name = TEMP_DIR.name + url[-10:] + '.csv'
+    tempfile_name = TEMP_DIR.name + url[-15:] + '.csv'
     gdown.download(url, tempfile_name)
 
 

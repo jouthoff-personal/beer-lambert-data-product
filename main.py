@@ -1,15 +1,12 @@
-import sys
-import os
-
-from src.pipeline import calibrate_beer_lambert
+from src.pipeline import calibrate_beer_lambert, estimate_concentration_fermentation_runs
 
 
-def predict_fermentation_run_concentrations():
-    current_dir = os.getcwd()
-    calibration_file_path = current_dir + '/src/data/calibration.csv'
+def run_beer_lambert_data_product():
     print('Running calibration...')
-    calibrate_beer_lambert(calibration_file_path)
+    calibrate_beer_lambert()
+    print('Estimating concentration for fermentation runs...')
+    estimate_concentration_fermentation_runs()
 
 
 if __name__ == "__main__":
-    predict_fermentation_run_concentrations()
+    run_beer_lambert_data_product()
