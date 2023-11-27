@@ -26,10 +26,10 @@ def calibration_model(concentration, absorbance):
     return model.coef_[0], model.intercept_
 
 
-def predict_concentrations(run_data, coefficients, intercepts):
+def predict_concentrations(run_data, model):
     prediction = pd.DataFrame(columns=run_data.columns)
     for column in run_data.columns:
-        prediction[column] = (coefficients[column].values * run_data[column].values) + intercepts[column]
+        prediction[column] = (model.at["coefficient", column] * run_data[column].values) + model.at["intercept", column]
     return prediction
 
 

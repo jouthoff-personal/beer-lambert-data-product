@@ -1,16 +1,16 @@
 import pandas as pd
 import pytest
 
-from src.model import calibration_model, train_model
+from src.model import calibration_model, calibrate_beer_lambert_model, predict_concentrations
 
 
-def test_train_model():
+def test_calibrate_beer_lambert_model_model():
    df = pd.DataFrame([[50.0, 3.0, 3.0], [25.0, 3.7, 3.1], [12.5, 4.2, 3.2], [6.25, 4.7, 3.3], [3.125, 5.2, 3.4]], columns=['Concentration', '220', '230'])
 
-   [output1, output2] = train_model(df)
+   output = calibrate_beer_lambert_model(df)
 
-   assert output1['230'][0] == pytest.approx(-112.5)
-   assert round(output2['230'][0], 2) == 379.38
+   assert output['230'][0] == pytest.approx(-112.5)
+   assert round(output['230'][0], 2) == 379.38
 
 
 def test_calibration_model():
@@ -24,5 +24,9 @@ def test_calibration_model():
 
 
 def test_predict_concentrations():
-    pass
+    run_data = pd.DataFrame([3.0, 3.4, 2.8], columns=['220'])
+    model = pd.DataFrame([1, 0], columns=['220'], index=['coefficient', 'intercept'])
+    output = predict_concentrations(run_data, model)
 
+    assert len(output) == 3
+    assert output['220'][0] == 3.0
