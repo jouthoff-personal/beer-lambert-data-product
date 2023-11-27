@@ -51,7 +51,8 @@ C<sub>unknown-blank</sub> = ( 1 - C<sub>unknown-sample</sub> )
 C<sub>unknown-sample</sub> =(  (A<sub>dilutedSample</sub> / l<sub>optical-path</sub>) - E<sub>blank</sub> ) / (E<sub>pigment</sub> -1 )
 
 ### Future Steps
-1. Add data-cleanliness FLAG step to SOP data if that successive measurements increase in concentration (EXPECTED) or not (UNEXPECTED).
+1. Post model and prediction database to Notion API
+2. Add data-cleanliness FLAG step to SOP data if that successive measurements increase in concentration (EXPECTED) or not (UNEXPECTED).
 2. Include plots & visuals:
    3. Calibration curve plots for sets of wavelengths (i.e. 220-250 nm, 250-280nm ) to allow for visual inspection
    4. Plot predictions from each fermentation on calibration curve
