@@ -67,3 +67,6 @@ def download_file_from_url(url: str):
 def clean_up_tempfiles():
     TEMP_DIR.cleanup()
 
+
+def read_model_from_json():
+    return pd.read_json('calibrated_model.json')
